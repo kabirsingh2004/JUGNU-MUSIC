@@ -1,4 +1,4 @@
-const { Client, Collection, Intents } = require("discord.js");
+const { Client, Collection, GatewayIntentBits } = require("discord.js");
 const fs = require("fs");
 const Distube = require("distube").default;
 const { SpotifyPlugin } = require("@distube/spotify");
@@ -10,7 +10,6 @@ class JUGNU extends Client {
   constructor() {
     super({
       messageCacheLifetime: 60,
-      fetchAllMembers: false,
       messageCacheMaxSize: 10,
       restTimeOffset: 0,
       restWsBridgetimeout: 100,
@@ -19,12 +18,11 @@ class JUGNU extends Client {
         parse: ["roles", "users", "everyone"],
         repliedUser: false,
       },
-      partials: ["CHANNEL", "GUILD_MEMBER", "MESSAGE", "USER"],
       intents: [
-        Intents.FLAGS.GUILDS,
-        Intents.FLAGS.GUILD_MESSAGES,
-        Intents.FLAGS.GUILD_VOICE_STATES,
-        Intents.FLAGS.GUILD_MEMBERS,
+        GatewayIntentBits.Guilds,
+        GatewayIntentBits.GuildMessages,
+        GatewayIntentBits.GuildVoiceStates,
+        GatewayIntentBits.MessageContent,
       ],
     });
 
@@ -66,7 +64,6 @@ class JUGNU extends Client {
         new SoundCloudPlugin(),
         new YtDlpPlugin(),
       ],
-      youtubeDL: false,
       emptyCooldown: 2,
       nsfw: false,
       savePreviousSongs: true,

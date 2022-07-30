@@ -5,11 +5,10 @@ const { Queue } = require("distube");
 module.exports = {
   name: "removedupes",
   description: `remove duplicate songs from queue`,
-  userPermissions: ["CONNECT"],
-  botPermissions: ["CONNECT"],
+  userPermissions: ["Connect"],
+  botPermissions: ["Connect"],
   category: "Music",
   cooldown: 5,
-  type: "CHAT_INPUT",
   inVoiceChannel: true,
   inSameVoiceChannel: true,
   Player: true,
@@ -42,7 +41,7 @@ module.exports = {
       }
     }
     //clear the Queue
-    queue.delete();
+    queue.songs.splice(1);
     //now add every not dupe song again
     await newtracks.map((song, index) => {
       queue.addToQueue(song, index);

@@ -6,8 +6,8 @@ module.exports = {
   name: "removedupes",
   aliases: ["rmdupes", "rmd"],
   description: `remove duplicate songs from queue`,
-  userPermissions: ["CONNECT"],
-  botPermissions: ["CONNECT"],
+  userPermissions: ["Connect"],
+  botPermissions: ["Connect"],
   category: "Music",
   cooldown: 5,
   inVoiceChannel: true,
@@ -40,7 +40,7 @@ module.exports = {
       }
     }
     //clear the Queue
-    queue.delete();
+    queue.tracks.splice(1);
     //now add every not dupe song again
     await newtracks.map((song, index) => {
       queue.addToQueue(song, index);

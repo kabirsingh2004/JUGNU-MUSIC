@@ -6,8 +6,8 @@ module.exports = {
   name: "filter",
   aliases: ["fl", "filters"],
   description: `set filter in queue by name`,
-  userPermissions: ["CONNECT"],
-  botPermissions: ["CONNECT"],
+  userPermissions: ["Connect"],
+  botPermissions: ["Connect"],
   category: "Music",
   cooldown: 5,
   inVoiceChannel: true,
@@ -32,7 +32,7 @@ module.exports = {
       } Provide a Filter Name`)
     }
     if (filterName === "off") {
-      queue.setFilter(false);
+      queue.filters.clear();
       client.embed(
         message,
         `${client.config.emoji.SUCCESS} Queue Filter Off !!`
@@ -49,11 +49,11 @@ module.exports = {
           .substring(0, 2000)} `
       );
     } else if (Object.keys(client.distube.filters).includes(filterName)) {
-      queue.setFilter(filterName);
+      queue.filters.add(filterName);
       client.embed(
         message,
         `${client.config.emoji.SUCCESS} Current Queue Filter: \`${
-          queue.filters.join(", ") || "Off"
+          queue.filters.names.join(", ") || "Off"
         }\` !!`
       );
     }

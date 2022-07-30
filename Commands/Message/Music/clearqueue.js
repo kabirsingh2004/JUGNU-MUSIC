@@ -6,8 +6,8 @@ module.exports = {
   name: "clearqueue",
   aliases : ['clq','clearq'],
   description: `clear current queue of server`,
-  userPermissions: ["CONNECT"],
-  botPermissions: ["CONNECT"],
+  userPermissions: ["Connect"],
+  botPermissions: ["Connect"],
   category: "Music",
   cooldown: 5,
   inVoiceChannel: true,
@@ -25,7 +25,7 @@ module.exports = {
    */
   run: async (client, message, args, prefix, queue) => {
     // Code
-    queue.delete();
+    queue.songs.splice(1);
     client.embed(message, `${client.config.emoji.SUCCESS} Queue Cleared !!`);
   },
 };
